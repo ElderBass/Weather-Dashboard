@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+      />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+
+    <link rel='stylesheet' href='./Assets\css\style.css'>
+</head>
+<body>
+    <header>
+        <h1>Weather Dashboard</h1>
+    </header>
+    <div class='container mainContainer'>
+        <div class='container col-lg-4 col-md-3 col-sm-2 sideColumn'>
+            <div class='row g-3 align-items-center"'>
+                
+                <div class="input-group mb-3">
+                    <input type="text" id='searchInput' class="form-control" placeholder="Search for a City!" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <button class="btn btn-primary" type="submit" id="button-addon2 searchBtn"><i class="fas fa-search"></i></button>
+                  </div>
+                <!-- <div class="col-auto">
+                    <label for="inputPassword6" class="col-form-label">Search</label>
+                </div>
+                <div class="col-auto">
+                    <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-primary" id='searchBtn' type="submit">Button</button>
+                </div> -->
+            </div>
+        
+            <div class='row'>
+            
+                <aside class='cities'>
+                    <ul class="list-group">
+                        <li class="list-group-item">Austin</li>
+                        <li class="list-group-item">Chicago</li>
+                        <li class="list-group-item">Minneapolis</li>
+                        <li class="list-group-item">New Donk City</li>
+                        <li class="list-group-item">Philadelphia</li>
+                    </ul>
+                </aside>
+            </div>
+
+        </div>
+        <div class='container mainColumn col-lg-8 col-md-9 col-10'>
+            <div class='row'>
+                <div class='container currentCity'>
+                    <h2>Current City</h2>
+                    <p>Temperature</p>
+                    <p></p>
+                    <!--Will likely be appending shit in here from jQuery-->
+                </div>
+            </div>
+        </div>
+  <script>  //<!--Put the weather shit here-->  </script>
+</body>
+</html>
+
+<!--Some things while they're in my brain: might need to save favorite cities to local storage
+so create a key like "favorites" and if the user hits a button or something for that city, add that 
+city's data into the favorites, then on page load have the aside append those fucks into the list -->

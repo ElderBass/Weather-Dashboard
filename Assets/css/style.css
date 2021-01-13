@@ -1,0 +1,26 @@
+* {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+header {
+    background-color: rgba(2, 2, 155, 0.671);
+    color: rgb(175, 221, 7);
+    font-size: 68px;
+    text-align: center;
+    padding: 15px;
+    border-bottom: solid 3px  rgb(175, 221, 7);;
+}
+
+.mainContainer {
+    margin-top: 20px;
+}
+
+.sideColumn {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+.cities {
+    float: left;   
+}
