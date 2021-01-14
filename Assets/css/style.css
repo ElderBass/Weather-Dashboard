@@ -4,11 +4,11 @@
 
 header {
     background-color: rgba(2, 2, 155, 0.671);
-    color: rgb(175, 221, 7);
+    color: rgb(99, 252, 39);
     font-size: 68px;
     text-align: center;
     padding: 15px;
-    border-bottom: solid 3px  rgb(175, 221, 7);;
+    border-bottom: solid 3px  rgb(99, 252, 39);
 }
 
 .mainContainer {
@@ -16,11 +16,86 @@ header {
 }
 
 .sideColumn {
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 10px;
+    /*margin-right: 10px;; */
     margin-top: 10px;
+    float: left;
+}
+
+.searchForm {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;   
+    margin-bottom: 20px; 
+}
+.searchForm input {
+    vertical-align: left;
+    margin: 5px 10px 5px 0;
+    padding: 10px;
+    border: 1px solid rgb(99, 252, 39);
+    
+}
+.searchForm button {
+    vertical-align: right;
+    padding: 10px;
+    max-width: 15%;
+    border-radius: 15%;
+    color:   rgb(99, 252, 39);
+    background-color: rgba(2, 2, 155, 0.671);
+    outline: none;
+}
+
+.float-right {
+    float: right;
+}
+.float-left {
+    float: left;
+}
+
+.mainColumn {
+    margin-left: 20px;
+    margin-right: auto;     
 }
 
 .cities {
     float: left;   
+}
+
+#currentCity {
+    border: solid 2px rgba(2, 2, 155, 0.671);
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+#currentCity h2 {
+    font-size: 50px;
+    color: rgba(2, 2, 155, 0.671);
+    margin-bottom: 10px;
+}
+.nextFiveDays {
+    margin-top: 10px;
+    border: solid 2px rgba(2, 2, 155, 0.671);
+    padding: 15px; 
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+
+}
+.forecastButton {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    color: rgb(99, 252, 39);
+    background-color: rgba(2, 2, 155, 0.671);
+    outline: none;
+    width: auto;
+    height: auto;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hide {
+    display:none;
 }

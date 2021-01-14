@@ -24,27 +24,32 @@
         <h1>Weather Dashboard</h1>
     </header>
     <div class='container mainContainer'>
-        <div class='container col-lg-4 col-md-3 col-sm-2 sideColumn'>
-            <div class='row g-3 align-items-center"'>
-                
-                <div class="input-group mb-3">
-                    <input type="text" id='searchInput' class="form-control" placeholder="Search for a City!" aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button class="btn btn-primary" type="submit" id="button-addon2 searchBtn"><i class="fas fa-search"></i></button>
-                  </div>
-                <!-- <div class="col-auto">
-                    <label for="inputPassword6" class="col-form-label">Search</label>
-                </div>
-                <div class="col-auto">
-                    <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-                </div>
-                <div class="col-auto">
-                    <button class="btn btn-primary" id='searchBtn' type="submit">Button</button>
-                </div> -->
+        <div class='col-lg-4 col-md-3 col-sm-2 float-left'>
+            <div class='container sideColumn float-left'>
+            
+             <!--   <div class='row g-3 align-items-center"'> -->
+                    
+                    <div class="row">
+                        <form class='searchForm' action=''>
+                            <input type="text" id='searchInput' class='float-left' placeholder="Search for a City!">
+                            <button class="searchBtn float-right" type="submit" id="searchBtn"><i class="fas fa-search"></i></button>
+                        </form>
+                        
+                    </div>
+                    <!-- <div class="col-auto">
+                        <label for="inputPassword6" class="col-form-label">Search</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-primary" id='searchBtn' type="submit">Button</button>
+                    </div> -->
+               <!-- </div> -->
             </div>
-        
             <div class='row'>
             
-                <aside class='cities'>
+                <aside class='cities float-left'>
                     <ul class="list-group">
                         <li class="list-group-item">Austin</li>
                         <li class="list-group-item">Chicago</li>
@@ -56,17 +61,33 @@
             </div>
 
         </div>
-        <div class='container mainColumn col-lg-8 col-md-9 col-10'>
-            <div class='row'>
-                <div class='container currentCity'>
-                    <h2>Current City</h2>
-                    <p>Temperature</p>
-                    <p></p>
-                    <!--Will likely be appending shit in here from jQuery-->
+        <div class='col-lg-8 col-md-9 col-10  float-right'>
+            <div class='container mainColumn'>
+                <div class='row'>
+                    <div class='container' id='currentCity'>
+                        <h2 class='defaultText'>Search for a city to display its current weather!</h2>
+                        
+                        <!--Will likely be appending shit in here from jQuery-->
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='container nextFiveDays hide'>
+                        <button class='forecastButton'>Click to see the five day forecast of this city!</button>
+                    </div>
+                </div>
+                <div id='mapholder'>
+                    
                 </div>
             </div>
         </div>
-  <script>  //<!--Put the weather shit here-->  </script>
+    <!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQX54VilPKn8Z-CVrHrLqmQM6eMctX27I&callback=initMap" type="text/javascript"></script>-->
+  <!--  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQX54VilPKn8Z-CVrHrLqmQM6eMctX27I&callback=initMap&libraries=&v=weekly"
+      
+    ></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type='text/javascript' src='./Assets\js\script.js'> </script>
 </body>
 </html>
 
