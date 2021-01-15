@@ -23,63 +23,60 @@
     <header>
         <h1>Weather Dashboard</h1>
     </header>
-    <div class='container mainContainer'>
-        <div class='col-lg-4 col-md-3 col-sm-2 float-left'>
-            <div class='container sideColumn float-left'>
-            
-             <!--   <div class='row g-3 align-items-center"'> -->
-                    
-                    <div class="row">
-                        <form class='searchForm' action=''>
-                            <input type="text" id='searchInput' class='float-left' placeholder="Search for a City!">
-                            <button class="searchBtn float-right" type="submit" id="searchBtn"><i class="fas fa-search"></i></button>
-                        </form>
-                        
-                    </div>
-                    
-            </div>
-            <div class='row'>
-                <h3>Favorites</h3>
-                <aside class='citiesList float-left'>
-                    
-                    <ul class="list-group favoriteCities">
-                        <h4 class='favoritesFiller'>You Currently Have No Favorites!</h4>
-                       <!-- <li class="list-group-item" id="favoritesFiller">Your</li>
-                        <li class="list-group-item" id="favoritesFiller">Favorite</li>
-                        <li class="list-group-item" id="favoritesFiller">Cities</li>
-                        <li class="list-group-item" id="favoritesFiller">Will Go</li>
-                        <li class="list-group-item" id="favoritesFiller">Here!</li> -->
-                    </ul>
-                    <br>
-                    <hr>
-                    <br>
-                    <h3>Search History</h3>
-                    <br>
-                    <ul class='list-group' id='searchHistory'>
-                        <h4 class='searchFiller'>You Currently Have No Recent Searches!</h4>
-
-                    </ul>
-                </aside>
-            </div>
-
-        </div>
-        <div class='col-lg-8 col-md-9 col-10  float-right'>
-            <div class='container mainColumn'>
-                <div class='row'>
-                    <div class='container' id='currentCity'>
-                        <h2 class='defaultText'>Search for a city to display its current weather!</h2>
-                        
-                        <!--Will likely be appending shit in here from jQuery-->
-                    </div>
-                </div>
-                <div class='row'>
-                    <div class='container nextFiveDays hide'>
-                        <button class='forecastButton'>Click to see the five day forecast of this city!</button>
-                    </div>
-                </div>
+    <div class='container' id='mainContainer'>
+        <div class='row'>
+            <div class='col-lg-4 col-md-3 col-sm-2 float-left'>
+                <div class='container sideColumn float-left'>
                 
+                <!--   <div class='row g-3 align-items-center"'> -->
+                        
+                        <div class="row">
+                            <form class='searchForm' action=''>
+                                <input type="text" id='searchInput' class='float-left' placeholder="Search for a City!">
+                                <button class="searchBtn float-right" type="submit" id="searchBtn"><i class="fas fa-search"></i></button>
+                            </form>
+                            
+                        </div>
+                        
+                </div>
+                <div class='row'>
+                    <h3>Search History</h3>
+                    <aside class='float-left'>
+                        
+                        <br>
+                        <ul class='list-group' id='searchHistory'>
+                            <h4 class='searchFiller'>You Currently Have No Recent Searches!</h4>
+
+                        </ul>
+                    </aside>
+                </div>
+
+            </div>
+            <div class='col-lg-8 col-md-9 col-10  float-right'>
+                <div class='container mainColumn'>
+                    <div class='row'>
+                        <div class='container' id='currentCity'>
+                            <h2 class='defaultText'>Search for a city to display its current weather!</h2>
+                            
+                            <!--Will likely be appending shit in here from jQuery-->
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='container'>
+                            <div class='row'>
+                                <h3>Five Day Forecast:</h3>
+                            </div>
+                            <div class='row' id='nextFiveDays'>
+
+                            </div>
+                                
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
         </div>
+    </div>
     <!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQX54VilPKn8Z-CVrHrLqmQM6eMctX27I&callback=initMap" type="text/javascript"></script>-->
   <!--  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script defer <div id='mapholder'></div>

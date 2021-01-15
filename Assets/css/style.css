@@ -11,14 +11,16 @@ header {
     border-bottom: solid 3px  rgb(99, 252, 39);
 }
 
-.mainContainer {
+#mainContainer {
     margin-top: 20px;
+    margin-left: 0px;
+    align-items: center;
 }
 
 .sideColumn {
-    margin-left: 0px;
-    /*margin-right: 10px;; */
-    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 10px;
+    margin-top: 20px;
     float: left;
 }
 
@@ -53,6 +55,7 @@ hr {
 }
 .searchForm input {
     vertical-align: left;
+    width:fit-content; 
     margin: 5px 10px 5px 0;
     padding: 10px;
     border: 1px solid rgb(99, 252, 39);
@@ -78,7 +81,8 @@ hr {
 
 .mainColumn {
     margin-left: 20px;
-    margin-right: auto;     
+    margin-right: 20px; 
+    margin-top:20px;    
 }
 
 #currentCity {
@@ -92,7 +96,7 @@ hr {
     color: rgba(2, 2, 155, 0.671);
     margin-bottom: 10px;
 }
-.nextFiveDays {
+#nextFiveDays {
     margin-top: 10px;
     border: solid 2px rgba(2, 2, 155, 0.671);
     padding: 15px; 
@@ -101,35 +105,9 @@ hr {
     align-items: center;
 
 }
-.forecastButton {
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-    color: rgb(99, 252, 39);
-    background-color: rgba(2, 2, 155, 0.671);
-    outline: none;
-    width: auto;
-    height: auto;
-    padding: 20px;
-    margin-left: auto;
-    margin-right: auto;
-}
 
-#favorite {
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-    color: rgb(99, 252, 39);
-    background-color: rgba(2, 2, 155, 0.671);
-    outline: none;
-    width: auto;
-    height: auto;
-    padding: 12px;
-    margin-left: auto;
-    margin-right: auto;
-}
+
+
 
 .hide {
     display:none;
