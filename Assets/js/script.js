@@ -1,188 +1,155 @@
-
-
-//note that the above is just for the city of Bujumbura, so we'll need to link it to user searches and the current city
-//console.log(navigator)//.getCurrentPosition(coords.latitude));
-//Use this ajax to grab the entire weather app object so we can navigate through it down below
-
-/*
-function citySearch (position) {
-  console.log('hello there');
-  //var userSearch = $('#searchInput').val()
-  //var latlon = position.coords.latitude + "," + position.coords.longitude;
-  var img_url = "https://maps.googleapis.com/maps/api/staticmap?center=44.999933,-93.267978&zoom=14&size=400x300&sensor=false&key=AIzaSyDQX54VilPKn8Z-CVrHrLqmQM6eMctX27I";
-  var imageDiv = $('<img>');
-  imageDiv.attr('src', img_url)
-  $("#mapholder").append(imageDiv)
-  console.log(latlon);
-  console.log(img_url);
-
-}
-function getLocation() {
-
-  if(navigator.geolocation) {
-     
-     // timeout at 60000 milliseconds (60 seconds)
-     //var options = {timeout:60000};
-     navigator.geolocation.getCurrentPosition(citySearch);
-  } else {
-     alert("Sorry, browser does not support geolocation!");
-  }
-}
-*/
-
 var today = moment().format('dddd, MMM Do');
 var currentCity;
 
 function citySearch (event) {
 event.preventDefault();
 
-//this will clear the present entry from the div, if such an entry exists
-$('#currentCity').empty();
+  //this will clear the present entry from the div, if such an entry exists
+  $('#currentCity').empty();
 
-//hide the default text contained in the div where the search results will appear
-$('.defaultText').attr('class', 'hide');
+  //hide the default text contained in the div where the search results will appear
+  $('.defaultText').attr('class', 'hide');
 
-//remove the hide class from the next five days div and the favorites button
-$('.nextFiveDays').removeClass('hide');
+  //remove the hide class from the next five days div and the favorites button
+  $('.nextFiveDays').removeClass('hide');
 
-//set the city entered by the user to a variable
-  var userSearch = $('#searchInput').val().trim();
+  //set the city entered by the user to a variable
+    var userSearch = $('#searchInput').val().trim();
 
-//make a call for the api by city name, using the user's choice for the query in the URL
-$.ajax({
-  url: "https://api.openweathermap.org/data/2.5/weather?q="+userSearch+",Burundi&units=imperial&appid=57a5bd55c9410499ffe772185f8645e8",
-  method: "GET"
-}).then(function(response) {
-  console.log(response);
- //declare a variable for a new h2 element, in which will set the user's city's name
- var cityName = $('<h2>');
- //I left some space in here to separate the name from the weather icon that will be displayed
- cityName.text(response.name+"   ");
+  //make a call for the api by city name, using the user's choice for the query in the URL
+  $.ajax({
+    url: "https://api.openweathermap.org/data/2.5/weather?q="+userSearch+",Burundi&units=imperial&appid=57a5bd55c9410499ffe772185f8645e8",
+    method: "GET"
+  }).then(function(response) {
+    console.log(response);
+  //declare a variable for a new h2 element, in which will set the user's city's name
+  var cityName = $('<h2>');
+  //I left some space in here to separate the name from the weather icon that will be displayed
+  cityName.text(response.name+"   ");
 
-//declare a variable as a new image element
- var icon = $('<img>');
- //set the source attribute to this new <img> as the api url with the current city's weather icon id,
- //so that when the city is queried, an icon depicted its current conditions will pop up next to the name. Pretty neat IMO.
- icon.attr('src', "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png");
- //append this cute icon to the cityName <h2>
- cityName.append(icon);
+  //declare a variable as a new image element
+  var icon = $('<img>');
+  //set the source attribute to this new <img> as the api url with the current city's weather icon id,
+  //so that when the city is queried, an icon depicted its current conditions will pop up next to the name. Pretty neat IMO.
+  icon.attr('src', "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png");
+  //append this cute icon to the cityName <h2>
+  cityName.append(icon);
 
- var todayDate = $('<h4>');
- todayDate.text(today);
- todayDate.attr('style', 'text-decoration: underline')
- 
- //I amended the above API to have 'imperial' units, so temperature is in Fahrenheit already and we don't convert from Kelvin
- var temperature = $('<p>');
- //declare a var temperature to a new p element and have that p contain the temperature given from the API of that city
- temperature.text("Temperature: "+response.main.temp.toFixed(0)+" F")
-
-//do the same as we did above for humidity and wind speed of user's searched city
- var humidity = $('<p>');
- humidity.text('Humidity: '+response.main.humidity+'%')
- var windSpeed = $('<p>');
- windSpeed.text('Wind Speed: '+response.wind.speed+' mph')
-
- 
- //declaring these variables as equal to the latitude and longitude coordinates of the searched city to be used to grab the UV index
- var lat = response.coord.lat;
- var lon = response.coord.lon;
-
-var uvIndex = function () {
-  var UV  = $('<p>');
- $.ajax({
-   url: `http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=57a5bd55c9410499ffe772185f8645e8`,
-   method: 'GET'
- }).then(function(responseTwo) {
-   console.log(responseTwo);
-   UV.text('UV Index: '+responseTwo.value);
- })
- 
- return UV;
-}
-
-function addToFavorites () {
+  var todayDate = $('<h4>');
+  todayDate.text(today);
+  todayDate.attr('style', 'text-decoration: underline')
   
-  var favorites = JSON.parse(localStorage.getItem('favorites'));
+  //I amended the above API to have 'imperial' units, so temperature is in Fahrenheit already and we don't convert from Kelvin
+  var temperature = $('<p>');
+  //declare a var temperature to a new p element and have that p contain the temperature given from the API of that city
+  temperature.text("Temperature: "+response.main.temp.toFixed(0)+" F")
 
-  if (favorites) {
-    $('.favoritesFiller').addClass('hide');
+  //do the same as we did above for humidity and wind speed of user's searched city
+  var humidity = $('<p>');
+  humidity.text('Humidity: '+response.main.humidity+'%')
+  var windSpeed = $('<p>');
+  windSpeed.text('Wind Speed: '+response.wind.speed+' mph')
 
-    for (var i = 0; i < favorites.length; i++) {
-      if (favorites[i] === response.name) { //this is throwing the alert...but then pushing it into storage anyway...
-        alert("that's already a favorite, yo!");
-      }
-      else {
-        favorites.push(response.name);
-        var favoriteSlot = $('<li>');
-        favoriteSlot.text(response.name);
-        favoriteSlot.attr('class', 'list-group-item');
+  
+  //declaring these variables as equal to the latitude and longitude coordinates of the searched city to be used to grab the UV index
+  var lat = response.coord.lat;
+  var lon = response.coord.lon;
+ 
+  var uvIndex = function () {
+    var UV  = $('<p>');
+  $.ajax({
+    url: `http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=57a5bd55c9410499ffe772185f8645e8`,
+    method: 'GET'
+  }).then(function(responseTwo) {
+    console.log(responseTwo);
+    UV.text('UV Index: '+responseTwo.value);
+  }) 
+  
+  return UV;
+  } 
+
+  function addToFavorites () {
+    
+    var favorites = JSON.parse(localStorage.getItem('favorites'));
+
+    if (favorites) {
+      $('.favoritesFiller').addClass('hide');
+
+      for (var i = 0; i < favorites.length; i++) {
+        if (favorites[i] === response.name) { //this is throwing the alert...but then pushing it into storage anyway...
+          alert("that's already a favorite, yo!");
+        }
+        else {
+          favorites.push(response.name);
+          var favoriteSlot = $('<li>');
+          favoriteSlot.text(response.name);
+          favoriteSlot.attr('class', 'list-group-item');
+        }
       }
     }
-  }
-  else {
-    $('.favoritesFiller').addClass('hide');
+    else {
+      $('.favoritesFiller').addClass('hide');
 
-    favorites = [response.name]
+      favorites = [response.name]
 
-    var favoriteSlot = $('<li>');
-    favoriteSlot.text(response.name);
-    favoriteSlot.attr('class', 'list-group-item');
+      var favoriteSlot = $('<li>');
+      favoriteSlot.text(response.name);
+      favoriteSlot.attr('class', 'list-group-item');
 
-    
-    
-  }
-  $('.favoriteCities').append(favoriteSlot);
-  localStorage.setItem('favorites', JSON.stringify(favorites))
-}
-
-
-//for adding query search to the search history list; 
-  var searchHistory = JSON.parse(localStorage.getItem('search history'));
-
-  if (searchHistory) { //not sure I need the if/else
-    $('.searchFiller').addClass('hide');
-
-    for (var i = 0; i < searchHistory.length; i++) {
       
-        searchHistory.push(response.name);
-        var searchSlot = $('<li>');
-        searchSlot.text(response.name);
-        searchSlot.attr('class', 'list-group-item');
-      }
+      
     }
-  
-  else {
-    $('.searchFiller').addClass('hide');
-
-    searchHistory = [response.name]
-    var searchSlot = $('<li>');
-    searchSlot.text(response.name);
-    searchSlot.attr('class', 'list-group-item');
-
-    
-    
+    $('.favoriteCities').append(favoriteSlot);
+    localStorage.setItem('favorites', JSON.stringify(favorites))
   }
-  $('#searchHistory').append(searchSlot);
-  localStorage.setItem('search history', JSON.stringify(searchHistory))
 
 
- 
+  //for adding query search to the search history list; 
+    var searchHistory = JSON.parse(localStorage.getItem('search history'));
 
-currentCity = response.name //gonna use this for the five-day forecast shit
+    if (searchHistory) { //not sure I need the if/else
+      $('.searchFiller').addClass('hide');
 
-//create a favorite button that will save the current city to local Storage:
-var favorite = $('<button>')
-favorite.attr('id', 'favorite')
-favorite.text('Add to Favorites!')
+      for (var i = 0; i < searchHistory.length; i++) {
+        
+          searchHistory.push(response.name);
+          var searchSlot = $('<li>');
+          searchSlot.text(response.name);
+          searchSlot.attr('class', 'list-group-item');
+        }
+      }
+    
+    else {
+      $('.searchFiller').addClass('hide');
 
-favorite.on('click', addToFavorites)
-favorite.on('click', function() {
-  $('.favoritesFiller').addClass('hide');
-})
+      searchHistory = [response.name]
+      var searchSlot = $('<li>');
+      searchSlot.text(response.name);
+      searchSlot.attr('class', 'list-group-item');
+     
+      
+    }
+    $('#searchHistory').append(searchSlot);
+    localStorage.setItem('search history', JSON.stringify(searchHistory))
 
-//create a variable for the current city div from HTML and append all the above stuff we just made to it.
-var currentCityDisplay = $('#currentCity')
-currentCityDisplay.append(cityName, todayDate, temperature, humidity, windSpeed, uvIndex(), favorite)
+
+  
+
+  currentCity = response.name //gonna use this for the five-day forecast shit
+
+  //create a favorite button that will save the current city to local Storage:
+  var favorite = $('<button>')
+  favorite.attr('id', 'favorite')
+  favorite.text('Add to Favorites!')
+
+  favorite.on('click', addToFavorites)
+  favorite.on('click', function() {
+    $('.favoritesFiller').addClass('hide');
+  })
+
+  //create a variable for the current city div from HTML and append all the above stuff we just made to it.
+  var currentCityDisplay = $('#currentCity')
+  currentCityDisplay.append(cityName, todayDate, temperature, humidity, windSpeed,/* uvIndex(), */ favorite)
 
 })
 }
@@ -193,7 +160,7 @@ into our favorite cities list. JUST FYI YOU TWAT */
 function displayFavorites () {
 
  if (localStorage.getItem('favorites')) {
-  $('.favoriteCities').empty()
+  $('.favoritesFiller').addClass('hide');
   var favorites = JSON.parse(localStorage.getItem('favorites'));
   for (var i = 0; i < favorites.length; i++) {
     
@@ -203,13 +170,11 @@ function displayFavorites () {
     $('.favoriteCities').append(favoriteSlot);
   }
 }
-else {
-  var emptyFavs = $('<h4>')
-  emptyFavs.text('You Currently Have No Favorites Added!')
-  emptyFavs.attr('style', 'color: rgba(2, 2, 155, 0.671); font-size: 24px; text-align: center; line-height: 35px; margin-top: 20px;')
-  $('.favoriteCities').append(emptyFavs); //not sure why this else isn't working either....
+
 }
-}
+  
+
+
 
 function displaySearchHistory () {
 
@@ -235,7 +200,14 @@ $(document).ready(
 
 $('#searchBtn').on('click', citySearch)
 
-//$('.forecastButton').on('click', displayForecast)
+$('.forecastButton').on('click', function() {
+  $.ajax({
+    url: "https://api.openweathermap.org/data/2.5/weather?q="+currentCity+",Burundi&units=imperial&appid=57a5bd55c9410499ffe772185f8645e8",
+    method: "GET"
+  }).then(function(response) {
+    console.log(response);
+})
+})
 // PSEUDO CODE AND NOTES -- see whiteboard, you slimy fuck!
 
 //$(document).on("click", ".movie", displayMovieInfo);
