@@ -28,20 +28,23 @@ function getLocation() {
      alert("Sorry, browser does not support geolocation!");
   }
 }
-
-$(document).ready(getLocation());
 */
-//$('#searchBtn').on('click', getLocation)
+
+var today = moment().format('dddd, MMM Do');
 var currentCity;
-
-
-
 
 function citySearch (event) {
 event.preventDefault();
+
+//this will clear the present entry from the div, if such an entry exists
+$('#currentCity').empty();
+
 //hide the default text contained in the div where the search results will appear
 $('.defaultText').attr('class', 'hide');
+
+//remove the hide class from the next five days div and the favorites button
 $('.nextFiveDays').removeClass('hide');
+
 //set the city entered by the user to a variable
   var userSearch = $('#searchInput').val().trim();
 
@@ -63,7 +66,10 @@ $.ajax({
  icon.attr('src', "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png");
  //append this cute icon to the cityName <h2>
  cityName.append(icon);
- 
+
+ var todayDate = $('<h4>');
+ todayDate.text(today);
+ todayDate.attr('style', 'text-decoration: underline')
  
  //I amended the above API to have 'imperial' units, so temperature is in Fahrenheit already and we don't convert from Kelvin
  var temperature = $('<p>');
@@ -93,20 +99,144 @@ var uvIndex = function () {
  
  return UV;
 }
-currentCity = response.name
+
+function addToFavorites () {
+  
+  var favorites = JSON.parse(localStorage.getItem('favorites'));
+
+  if (favorites) {
+    $('.favoritesFiller').addClass('hide');
+
+    for (var i = 0; i < favorites.length; i++) {
+      if (favorites[i] === response.name) { //this is throwing the alert...but then pushing it into storage anyway...
+        alert("that's already a favorite, yo!");
+      }
+      else {
+        favorites.push(response.name);
+        var favoriteSlot = $('<li>');
+        favoriteSlot.text(response.name);
+        favoriteSlot.attr('class', 'list-group-item');
+      }
+    }
+  }
+  else {
+    $('.favoritesFiller').addClass('hide');
+
+    favorites = [response.name]
+
+    var favoriteSlot = $('<li>');
+    favoriteSlot.text(response.name);
+    favoriteSlot.attr('class', 'list-group-item');
+
+    
+    
+  }
+  $('.favoriteCities').append(favoriteSlot);
+  localStorage.setItem('favorites', JSON.stringify(favorites))
+}
+
+
+//for adding query search to the search history list; 
+  var searchHistory = JSON.parse(localStorage.getItem('search history'));
+
+  if (searchHistory) { //not sure I need the if/else
+    $('.searchFiller').addClass('hide');
+
+    for (var i = 0; i < searchHistory.length; i++) {
+      
+        searchHistory.push(response.name);
+        var searchSlot = $('<li>');
+        searchSlot.text(response.name);
+        searchSlot.attr('class', 'list-group-item');
+      }
+    }
+  
+  else {
+    $('.searchFiller').addClass('hide');
+
+    searchHistory = [response.name]
+    var searchSlot = $('<li>');
+    searchSlot.text(response.name);
+    searchSlot.attr('class', 'list-group-item');
+
+    
+    
+  }
+  $('#searchHistory').append(searchSlot);
+  localStorage.setItem('search history', JSON.stringify(searchHistory))
+
+
+ 
+
+currentCity = response.name //gonna use this for the five-day forecast shit
+
+//create a favorite button that will save the current city to local Storage:
+var favorite = $('<button>')
+favorite.attr('id', 'favorite')
+favorite.text('Add to Favorites!')
+
+favorite.on('click', addToFavorites)
+favorite.on('click', function() {
+  $('.favoritesFiller').addClass('hide');
+})
+
+//create a variable for the current city div from HTML and append all the above stuff we just made to it.
 var currentCityDisplay = $('#currentCity')
-currentCityDisplay.append(cityName, temperature, humidity, windSpeed, uvIndex())
+currentCityDisplay.append(cityName, todayDate, temperature, humidity, windSpeed, uvIndex(), favorite)
 
 })
 }
 
+
+/*I'll need some sort of function for when document.ready or onLoad or some shit to append the items from local storage
+into our favorite cities list. JUST FYI YOU TWAT */
+function displayFavorites () {
+
+ if (localStorage.getItem('favorites')) {
+  $('.favoriteCities').empty()
+  var favorites = JSON.parse(localStorage.getItem('favorites'));
+  for (var i = 0; i < favorites.length; i++) {
+    
+    var favoriteSlot = $('<li>');
+    favoriteSlot.text(favorites[i]);
+    favoriteSlot.attr('class', 'list-group-item');
+    $('.favoriteCities').append(favoriteSlot);
+  }
+}
+else {
+  var emptyFavs = $('<h4>')
+  emptyFavs.text('You Currently Have No Favorites Added!')
+  emptyFavs.attr('style', 'color: rgba(2, 2, 155, 0.671); font-size: 24px; text-align: center; line-height: 35px; margin-top: 20px;')
+  $('.favoriteCities').append(emptyFavs); //not sure why this else isn't working either....
+}
+}
+
+function displaySearchHistory () {
+
+  if (localStorage.getItem('search history')) {
+    $('.searchFiller').addClass('hide');
+    var searchHistory = JSON.parse(localStorage.getItem('search history'));
+
+    for (var i = 0; i < searchHistory.length; i++) {
+      
+      var searchSlot = $('<li>');
+      searchSlot.text(searchHistory[i]);
+      searchSlot.attr('class', 'list-group-item');
+      $('#searchHistory').append(searchSlot);
+    }
+  }
+
+}
+
+$(document).ready(
+  displayFavorites(),
+  displaySearchHistory()
+)
+
 $('#searchBtn').on('click', citySearch)
 
-
-
-
-
-// PSEUDO CODE AND NOTES
+//$('.forecastButton').on('click', displayForecast)
+// PSEUDO CODE AND NOTES -- see whiteboard, you slimy fuck!
 
 //$(document).on("click", ".movie", displayMovieInfo);
 

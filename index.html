@@ -36,26 +36,28 @@
                         </form>
                         
                     </div>
-                    <!-- <div class="col-auto">
-                        <label for="inputPassword6" class="col-form-label">Search</label>
-                    </div>
-                    <div class="col-auto">
-                        <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-                    </div>
-                    <div class="col-auto">
-                        <button class="btn btn-primary" id='searchBtn' type="submit">Button</button>
-                    </div> -->
-               <!-- </div> -->
+                    
             </div>
             <div class='row'>
-            
-                <aside class='cities float-left'>
-                    <ul class="list-group">
-                        <li class="list-group-item">Austin</li>
-                        <li class="list-group-item">Chicago</li>
-                        <li class="list-group-item">Minneapolis</li>
-                        <li class="list-group-item">New Donk City</li>
-                        <li class="list-group-item">Philadelphia</li>
+                <h3>Favorites</h3>
+                <aside class='citiesList float-left'>
+                    
+                    <ul class="list-group favoriteCities">
+                        <h4 class='favoritesFiller'></h4>
+                       <!-- <li class="list-group-item" id="favoritesFiller">Your</li>
+                        <li class="list-group-item" id="favoritesFiller">Favorite</li>
+                        <li class="list-group-item" id="favoritesFiller">Cities</li>
+                        <li class="list-group-item" id="favoritesFiller">Will Go</li>
+                        <li class="list-group-item" id="favoritesFiller">Here!</li> -->
+                    </ul>
+                    <br>
+                    <hr>
+                    <br>
+                    <h3>Search History</h3>
+                    <br>
+                    <ul class='list-group' id='searchHistory'>
+                        <h4 class='searchFiller'>You Currently Have No Recent Searches!</h4>
+
                     </ul>
                 </aside>
             </div>
@@ -75,17 +77,16 @@
                         <button class='forecastButton'>Click to see the five day forecast of this city!</button>
                     </div>
                 </div>
-                <div id='mapholder'>
-                    
-                </div>
+                
             </div>
         </div>
     <!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQX54VilPKn8Z-CVrHrLqmQM6eMctX27I&callback=initMap" type="text/javascript"></script>-->
   <!--  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script defer
+    <script defer <div id='mapholder'></div>
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQX54VilPKn8Z-CVrHrLqmQM6eMctX27I&callback=initMap&libraries=&v=weekly"
       
     ></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type='text/javascript' src='./Assets\js\script.js'> </script>
 </body>
